@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     ArticleImage(
-                        stringResource(R.string.title_text,),
+                        stringResource(R.string.title_text),
                         stringResource(R.string.article_one),
                         stringResource(R.string.article_second)
                     )
@@ -45,9 +45,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArticleText(title: String, atirleOne: String, atirleSecond: String, modifier: Modifier = Modifier) {
+fun ArticleText(title: String, articleOne: String, articleSecond: String, modifier: Modifier = Modifier) {
     Column(
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.Top,
+        modifier = modifier
     ) {
         Text(
             text = title,
@@ -56,34 +57,36 @@ fun ArticleText(title: String, atirleOne: String, atirleSecond: String, modifier
                 .padding(16.dp,140.dp,16.dp,16.dp)
         )
         Text(
-            text = atirleOne,
+            text = articleOne,
             fontSize = 16.sp,
             textAlign = TextAlign.Justify,
             modifier = Modifier
-                .padding(16.dp, 0.dp, 16.dp, 0.dp  )
+                .padding(16.dp, 0.dp, 16.dp, 0.dp)
         )
         Text(
-            text = atirleSecond,
+            text = articleSecond,
             fontSize = 16.sp,
             textAlign = TextAlign.Justify,
             modifier = Modifier
-                .padding(16.dp )
+                .padding(16.dp)
         )
     }
 }
 
 @Composable
-fun ArticleImage(title: String, atirleOne: String, atirleSecond: String) {
+fun ArticleImage(title: String, articleOne: String, articleSecond: String, modifier: Modifier = Modifier) {
     Box {
         Image(
             painter = painterResource(R.drawable.bg_compose_background),
             contentDescription = null,
-            contentScale = FillWidth
+            contentScale = FillWidth,
+            modifier = modifier
         )
         ArticleText(
             title = title,
-            atirleOne = atirleOne,
-            atirleSecond = atirleSecond
+            articleOne = articleOne,
+            articleSecond = articleSecond,
+            modifier = modifier
         )
     }
 }
