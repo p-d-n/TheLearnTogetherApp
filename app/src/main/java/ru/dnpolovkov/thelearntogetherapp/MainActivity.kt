@@ -54,7 +54,7 @@ fun ArticleText(title: String, articleOne: String, articleSecond: String, modifi
             text = title,
             fontSize = 24.sp,
             modifier = Modifier
-                .padding(16.dp,140.dp,16.dp,16.dp)
+                .padding(16.dp)
         )
         Text(
             text = articleOne,
@@ -75,7 +75,7 @@ fun ArticleText(title: String, articleOne: String, articleSecond: String, modifi
 
 @Composable
 fun ArticleImage(title: String, articleOne: String, articleSecond: String, modifier: Modifier = Modifier) {
-    Box {
+    Column {
         Image(
             painter = painterResource(R.drawable.bg_compose_background),
             contentDescription = null,
