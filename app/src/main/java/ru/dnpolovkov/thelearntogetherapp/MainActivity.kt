@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale.Companion.FillWidth
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextAlign.Companion.Justify
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -59,14 +58,14 @@ fun ArticleText(title: String, articleOne: String, articleSecond: String, modifi
         Text(
             text = articleOne,
             fontSize = 16.sp,
-            textAlign = TextAlign.Justify,
+            textAlign = Justify,
             modifier = Modifier
                 .padding(16.dp, 0.dp, 16.dp, 0.dp)
         )
         Text(
             text = articleSecond,
             fontSize = 16.sp,
-            textAlign = TextAlign.Justify,
+            textAlign = Justify,
             modifier = Modifier
                 .padding(16.dp)
         )
