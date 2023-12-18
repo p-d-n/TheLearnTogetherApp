@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -13,7 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale.Companion.FillWidth
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign.Companion.Justify
@@ -32,11 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ArticleImage(
-                        stringResource(R.string.title_text),
-                        stringResource(R.string.article_one),
-                        stringResource(R.string.article_second)
-                    )
+                    ComposeArticleApp()
                 }
             }
         }
@@ -44,48 +39,39 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArticleText(title: String, articleOne: String, articleSecond: String, modifier: Modifier = Modifier) {
-    Column(
-        verticalArrangement = Arrangement.Top,
-        modifier = modifier
-    ) {
-        Text(
-            text = title,
-            fontSize = 24.sp,
-            modifier = Modifier
-                .padding(16.dp)
-        )
-        Text(
-            text = articleOne,
-            fontSize = 16.sp,
-            textAlign = Justify,
-            modifier = Modifier
-                .padding(16.dp, 0.dp, 16.dp, 0.dp)
-        )
-        Text(
-            text = articleSecond,
-            fontSize = 16.sp,
-            textAlign = Justify,
-            modifier = Modifier
-                .padding(16.dp)
-        )
-    }
+fun ComposeArticleApp() {
+    ArticleCard(
+        title = stringResource(R.string.title_text),
+        articleOne =  stringResource(R.string.article_one),
+        articleSecond = stringResource(R.string.article_second),
+        imagePainter = painterResource(R.drawable.bg_compose_background)
+    )
 }
 
 @Composable
-fun ArticleImage(title: String, articleOne: String, articleSecond: String, modifier: Modifier = Modifier) {
-    Column {
-        Image(
-            painter = painterResource(R.drawable.bg_compose_background),
-            contentDescription = null,
-            contentScale = FillWidth,
-            modifier = modifier
+fun ArticleCard(
+    title: String,
+    articleOne: String,
+    articleSecond: String,
+    imagePainter: Painter,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
+        Image(painter = imagePainter, contentDescription = null)
+        Text(
+            text = title,
+            modifier = Modifier.padding(16.dp),
+            fontSize = 24.sp
         )
-        ArticleText(
-            title = title,
-            articleOne = articleOne,
-            articleSecond = articleSecond,
-            modifier = modifier
+        Text(
+            text = articleOne,
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+            textAlign = Justify
+        )
+        Text(
+            text = articleSecond,
+            modifier = Modifier.padding(16.dp),
+            textAlign = Justify
         )
     }
 }
@@ -94,10 +80,6 @@ fun ArticleImage(title: String, articleOne: String, articleSecond: String, modif
 @Composable
 fun GreetingPreview() {
     TheLearnTogetherAppTheme {
-        ArticleImage(
-            stringResource(R.string.title_text),
-            stringResource(R.string.article_one),
-            stringResource(R.string.article_second)
-        )
+        ComposeArticleApp()
     }
 }
